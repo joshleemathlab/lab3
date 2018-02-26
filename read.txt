@@ -1,0 +1,5 @@
+CLASSROOM
+https://github.com/BYU-CS260-Winter-2018/lab-3-joshleemathlab
+
+PERSONAL
+https://github.com/joshleemathlab/lab3.git

@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<!--HELLO-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <title>Josh's XKCD Browser</title>
+  </head>
+  <body>
+    <div id="app" align="center">
+      <h1>XKCD Browser</h1>
+      <p>
+         <button v-on:click="previousComic"><--</button>
+         <button v-on:click="randomComic">Random</button>
+         <button v-on:click="nextComic">--></button>
+         </p><p style="text-align:center">
+         <button v-on:click="firstComic">First</button>
+         <button v-on:click="lastComic">Last</button>
+      </p>
+      <div v-if="loading">
+        <p>Loading...</p>
+      </div>
+      <div v-else>
+        <h2>{{ current.safe_title}}</h2>
+        <img v-bind:src="current.img" v-bind:alt="current.alt">
+        <p><i># {{number}}, drawn on {{current.day}} {{month}} {{current.year}}</i></p>
+        <div align="center">
+        <star-rating @rating-selected ="setRating"
+             v-bind:increment="0.5"
+             inactive-color="#000"
+             active-color="#b8c9f1"
+
+             v-bind:star-size="50">
+        </star-rating>
+        <p><u>Average rating:</u> {{starAverage}}</p>
+      </div>
+        <h3>Add a Comment</h3>
+        <form v-on:submit.prevent="addComment">
+           <input v-model="addedName" placeholder="Your Name"></p>
+            <textarea v-model="addedComment" placeholder="Add your comment here"></textarea>
+             <br/>
+              <button type="submit">Comment</button>
+        </form>
+        <h3>Comments</h3>
+         <div v-for="comment in comments[number]">
+            <hr>
+             <p>{{comment.text}}</p>
+              <p><i>- {{comment.author}}</i></p>
+              <p><i>{{comment.date}}</i></p>
+         </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <a href="https://github.com/BYU-CS260-Winter-2018/lab-3-joshleemathlab" target="_blank">My Classroom Github</a><br>
+      <a href="https://github.com/joshleemathlab/lab3" target="_blank">My Personal Github</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
